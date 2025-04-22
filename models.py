@@ -7,9 +7,9 @@ class User (Base):
     name = Column(String(128), nullable=False)
     email = Column(String(128), nullable=False)
     password = Column(String(128), nullable=False)
-    gender= Column(String(1), nullable=False)
-    birthdate=Column(Date, nullable=False)
-    imagename=Column(String, nullable=False)
+    gender= Column(String(1), nullable=True)
+    birthdate=Column(Date, nullable=True)
+    imagename=Column(String, nullable=True)
     created_at = Column(TIMESTAMP, nullable=False, server_default=text("now()"))
 
 
