@@ -14,7 +14,7 @@ conn = psycopg2.connect(
     port=5432,
     database='authserverdb',
     user='postgres',
-    password='liana1990',
+    password='password',
     cursor_factory=RealDictCursor
 ) #databasayi mej tvyalner@ grelu hamar
 cursor = conn.cursor()

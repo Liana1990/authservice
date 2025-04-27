@@ -4,7 +4,7 @@ from email.message import EmailMessage
 def send_email(to_email, subject, body):
     # Email account credentials
     from_email = "goldnsip@gmail.com" #cragir@ pet qe unena email, voric petq e userin code uxarkel, vor vstah linenq vor chisht user e
-    app_password = ""  #to do  Use App Password, not your Gmail password!
+    app_password = "rseg rmpi jyzt prfg"  #to do  Use App Password, not your Gmail password!
 
     # Create the email message
     msg = EmailMessage()
