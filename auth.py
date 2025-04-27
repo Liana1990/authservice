@@ -1,7 +1,10 @@
 import random
 import string
+import shutil
+import os
+
 import new_python
-from fastapi import APIRouter,status
+from fastapi import APIRouter,status, Form, UploadFile, File
 from fastapi.exceptions import HTTPException
 
 users_auth_router = APIRouter(tags=["User Auth"])# nshanakum e app-i poxaren sa enq grelu
@@ -10,16 +13,25 @@ from security import pwd_context
 import main
 
 
+UPLOAD_DIR = "users_images"
+os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+
 @users_auth_router.post("/api/sign-up")
-def sign_up (user_signup_data: UserSignUpSchema):
-    name = user_signup_data.name
-    email = user_signup_data.email
-    password = user_signup_data.password
+def sign_up (name: str = Form(...),
+             email: str = Form(...),
+             password: str = Form(...),
+             image: UploadFile = File(...)):
+
+    file_location = os.path.join(UPLOAD_DIR, image.filename)
+
+    with open(file_location, "wb") as buffer:
+        shutil.copyfileobj(image.file, buffer)
 
     hashed_password = pwd_context.hash(password)
 
-    main.cursor.execute("""INSERT INTO users (name, email, password) VALUES (%s, %s, %s)""",
-                        (name, email, hashed_password))
+    main.cursor.execute("""INSERT INTO users (name, email, password, imagename) VALUES (%s, %s, %s, %s)""",
+                        (name, email, hashed_password, image.filename))
 
     main.conn.commit()
 
