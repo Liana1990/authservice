@@ -12,5 +12,11 @@ class User (Base):
     imagename=Column(String, nullable=True)
     created_at = Column(TIMESTAMP, nullable=False, server_default=text("now()"))
 
+class Code(Base):
+    __tablename__ = "code"
+    id = Column(Integer, nullable=False, primary_key=True)
+    email = Column(String(128), nullable=False)
+    code = Column(String(4), nullable=False,unique=True)
+    created_at = Column(TIMESTAMP, nullable=False, server_default=text("now()"))
 
 

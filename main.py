@@ -22,4 +22,4 @@ cursor = conn.cursor()
 def main():
     return "ok"
 
-app.include_router(users_auth_router)# auth fili meji apiner@ kpnen himnakan appin u documentaciayi mej ereva
+app.include_router(users_auth_router)# auth filei meji apiner@ kpnen himnakan appin u documentaciayi mej ereva
